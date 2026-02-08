@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CONNECTION_INCOMING</title>
+    <link rel="stylesheet" href="styles (1).css">
+</head>
+
+<body>
+    <canvas id="matrix-canvas"></canvas>
+
+    <button id="music-toggle" onclick="toggleMusic()">🔇</button>
+
+    <div class="main-interaction-container">
+        <div class="terminal-header">
+            <span class="blink">>> SYSTEM ALERT: INCOMING CONNECTION REQUEST</span>
+        </div>
+
+        <h1 id="main-heading">CRITICAL: VALENTINE PROTOCOL DETECTED</h1>
+
+        <div class="status-text">
+            <p>> SOURCE: USER_HEART</p>
+            <p>> TARGET: YOU</p>
+            <p>> STATUS: PENDING APPROVAL...</p>
+        </div>
+
+        <div class="button-container" style="margin-top: 30px; position: relative; height: 100px;">
+            <button id="yes-button" onclick="clickYesButton()">[ ACCEPT ]</button>
+            <button id="no-button" onmouseover="hoverNoButton()" ontouchstart="hoverNoButton()">[ REJECT ]</button>
+        </div>
+
+        <div id="message-log"></div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

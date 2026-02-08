@@ -1,0 +1,425 @@
+/* Cyber-Pink Terminal Theme */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #050505;
+    --text-color: #ff00ff;
+    /* Neon Pink */
+    --accent-color: #ff69b4;
+    /* Hot Pink */
+    --error-color: #ff3333;
+    --success-color: #00ff00;
+    --scanline-color: rgba(255, 0, 255, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    cursor: default;
+    /* Terminal cursor could be added */
+    touch-action: manipulation;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Share Tech Mono', monospace;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 5px var(--text-color);
+}
+
+/* CRT Scanline Effect */
+body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+
+body::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0.0279;
+    }
+
+    5% {
+        opacity: 0.04853;
+    }
+
+    10% {
+        opacity: 0.029;
+    }
+
+    15% {
+        opacity: 0.082;
+    }
+
+    20% {
+        opacity: 0.016;
+    }
+
+    25% {
+        opacity: 0.038;
+    }
+
+    30% {
+        opacity: 0.004;
+    }
+
+    35% {
+        opacity: 0.057;
+    }
+
+    40% {
+        opacity: 0.026;
+    }
+
+    45% {
+        opacity: 0.064;
+    }
+
+    50% {
+        opacity: 0.081;
+    }
+
+    55% {
+        opacity: 0.019;
+    }
+
+    60% {
+        opacity: 0.066;
+    }
+
+    65% {
+        opacity: 0.034;
+    }
+
+    70% {
+        opacity: 0.013;
+    }
+
+    75% {
+        opacity: 0.07;
+    }
+
+    80% {
+        opacity: 0.039;
+    }
+
+    85% {
+        opacity: 0.017;
+    }
+
+    90% {
+        opacity: 0.063;
+    }
+
+    95% {
+        opacity: 0.0863;
+    }
+
+    100% {
+        opacity: 0.028;
+    }
+}
+
+/* Main Container */
+.main-interaction-container {
+    z-index: 50;
+    /* Ensure on top of photos */
+    text-align: center;
+    border: 2px solid var(--text-color);
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Slightly darker background due to photos */
+    box-shadow: 0 0 20px var(--text-color), inset 0 0 20px var(--text-color);
+    max-width: 90vw;
+    width: 500px;
+    position: relative;
+}
+
+/* Glitch Heading */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    position: relative;
+    animation: glitch 1s infinite alternate;
+}
+
+/* Floating Hearts Animation */
+.floating-heart {
+    position: absolute;
+    color: #ff69b4;
+    font-size: 20px;
+    z-index: 0;
+    pointer-events: none;
+    animation: floatUp 5s linear forwards;
+}
+
+/* Photo Heartbeat Gallery */
+.heartbeat-photo {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    border: 3px solid #ff69b4;
+    box-shadow: 0 0 15px #ff69b4;
+    z-index: 5;
+    /* Lower than container */
+    opacity: 0;
+
+    /* Blur Effect Removed */
+    transition: all 0.5s ease;
+
+    animation: appear 1s forwards, heartbeat 1.5s infinite;
+    border-radius: 10px;
+}
+
+.heartbeat-photo:hover {
+    z-index: 100;
+    animation: none;
+    /* Stop pulsing on hover so we can see it clearly */
+    transform: scale(1.5) rotate(0deg);
+}
+
+@keyframes appear {
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1) rotate(var(--rot));
+    }
+
+    50% {
+        transform: scale(1.1) rotate(var(--rot));
+    }
+
+    100% {
+        transform: scale(1) rotate(var(--rot));
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 0 0 red, -2px 0 0 blue;
+    }
+
+    25% {
+        text-shadow: -2px 0 0 red, 2px 0 0 blue;
+    }
+
+    50% {
+        text-shadow: 2px 0 0 red, -2px 0 0 blue;
+    }
+
+    75% {
+        text-shadow: -2px 0 0 red, 2px 0 0 blue;
+    }
+
+    100% {
+        text-shadow: 2px 0 0 red, -2px 0 0 blue;
+    }
+}
+
+/* Buttons */
+button {
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2em;
+    padding: 10px 30px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    box-shadow: 0 0 10px var(--text-color);
+}
+
+button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--text-color);
+}
+
+#yes-button {
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+#no-button {
+    position: absolute;
+    z-index: 2;
+}
+
+/* Music Toggle */
+#music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Status Text */
+.status-text {
+    margin-top: 20px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Canvas for Matrix Rain */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Warning/Error Message */
+.system-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    padding: 20px;
+    z-index: 100;
+    font-family: 'Share Tech Mono', monospace;
+    box-shadow: 0 0 15px var(--error-color);
+    pointer-events: none;
+}
+
+/* Success Message */
+.success-message {
+    color: var(--success-color);
+    /* Green for success usually, or keep pink? Let's use Pink for theme */
+    color: #ff69b4;
+    text-shadow: 0 0 10px #ff69b4;
+    font-size: 1.5em;
+    margin-top: 20px;
+    animation: typeWriter 2s steps(40, end);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .main-interaction-container {
+        padding: 20px;
+        width: 90%;
+        max-width: 95vw;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Smaller heading */
+    }
+
+    .status-text {
+        font-size: 0.8em;
+    }
+
+    button {
+        padding: 12px 24px;
+        /* Larger touch targets */
+        font-size: 1em;
+        margin: 5px;
+        width: 100%;
+        /* Full width buttons on mobile */
+        display: block;
+    }
+
+    #no-button {
+        position: relative;
+        /* Reset to relative for initial layout, JS will handle absolute */
+        margin-top: 10px;
+    }
+
+    /* Adjust button container height for vertical stacking */
+    .button-container {
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .terminal-header {
+        font-size: 0.8em;
+    }
+}
